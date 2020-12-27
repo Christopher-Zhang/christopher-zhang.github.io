@@ -1,0 +1,136 @@
+<html>
+<script src="util.js"></script>
+<script src="randomArray.js"></script>
+<script src="sorts.js"></script>
+<script src="test.js"></script>
+
+<body>
+
+    <form>
+        <input type="radio" id="insertion" name="sort" value ="insertion">
+        <label for="insertion">Insertion</label><br>
+        <input type="radio" id="bubble" name="sort" value="bubble">
+        <label for="bubble">Bubble</label><br>
+        <input type="radio" id="merge" name="sort" value="merge">
+        <label for="merge">Merge</label><br>
+        <input type="radio" id="quick" name="sort" value="quick">
+        <label for="quick">Quick</label><br>
+
+        <label for="length">Length:</label>
+        <input type="text" id="length" name="length">
+        <button type="button" id="confirm">Confirm</button>
+        <button type="button" id="clear">Clear</button>
+        <button type="button" id="generate">New Array</button>
+    </form>
+    <canvas id = "draw" width ="800" height="600"></canvas>
+</body>
+
+<script>
+    var canvas = document.getElementById('draw');
+    var canvasContext = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+
+    const form = document.querySelector('form');
+    var arr;
+    document.querySelector('#generate').addEventListener('click', function(){
+        console.log("new array");
+        arr = gen(document.querySelector('#length').value);
+        draw(arr);
+    });
+    document.querySelector('#clear').addEventListener('click', function(){
+        console.log("clear");
+        delete arr;
+        draw(arr);
+        console.clear();
+    });
+    document.querySelector('#confirm').addEventListener('click', function(){
+        console.log(document.querySelector('#length').value);
+        var length = document.querySelector('#length').value;
+        var mode;
+        for(var node of document.querySelectorAll('[type=radio]')){
+            if(node.checked){
+                console.log("checked: " + node.value);
+                mode = node.value;
+                break;
+            }
+        }
+        test(mode,length,1);
+    });
+    
+    function draw(arr){
+        canvasContext.fillStyle = 'BlanchedAlmond';
+        canvasContext.fillRect(0,0,canvas.width,canvas.height);
+        if(!Array.isArray(arr)) return;
+        console.log("drawing");
+        var length = arr.length;
+        var dataWidth = Math.floor((width-length)/length);
+        var dataHeight = Math.floor(height/MAX_VAL);
+        
+        canvasContext.fillStyle = 'Black';
+        for(let i = 0; i < length; i++){
+            var val = arr[i];
+            var x = i * dataWidth + i;
+            var y = height - dataHeight * val;
+            canvasContext.fillRect(x,y,dataWidth,dataHeight*val);
+        }
+    }
+
+    function drawBoth(arr, green, red){
+        if(!Array.isArray(arr)) return;
+        console.log("drawing");
+        var length = arr.length;
+        var dataWidth = Math.floor((width-length)/length);
+        var dataHeight = Math.floor(height/MAX_VAL);
+        var val = arr[green];
+        var x = green * dataWidth + green;
+        var y = height - dataHeight * val;
+
+        canvasContext.fillStyle = 'Green';
+        canvasContext.fillRect(x,y,dataWidth,dataHeight * val);
+        val = arr[red];
+        x = red * dataWidth + red;
+        y = height - dataHeight * val;
+        canvasContext.fillStyle = 'Red';
+        canvasContext.fillRect(x,y,dataWidth,dataHeight * val);
+    }
+    function drawGreen(arr,green){
+        if(!Array.isArray(arr)) return;
+        console.log("drawing");
+        var length = arr.length;
+        var dataWidth = Math.floor((width-length)/length);
+        var dataHeight = Math.floor(height/MAX_VAL);
+        var val = arr[green];
+        var x = green * dataWidth + green;
+        var y = height - dataHeight * val;
+
+        canvasContext.fillStyle = 'Green';
+        canvasContext.fillRect(x,y,dataWidth,dataHeight * val);
+    }
+    function drawRed(arr,red){
+        if(!Array.isArray(arr)) return;
+        console.log("drawing");
+        var length = arr.length;
+        var dataWidth = Math.floor((width-length)/length);
+        var dataHeight = Math.floor(height/MAX_VAL);
+    
+        var val = arr[red];
+        var x = red * dataWidth + red;
+        var y = height - dataHeight * val;
+        canvasContext.fillStyle = 'Red';
+        canvasContext.fillRect(x,y,dataWidth,dataHeight * val);
+    }
+    
+
+
+    function getParameters(form){
+        var parameters = "";
+        for(var i=0; i < form.elements.length; i++){
+            var field = form.elements[i];
+            console.log(field);
+
+        }
+    }
+</script>
+
+</html>
