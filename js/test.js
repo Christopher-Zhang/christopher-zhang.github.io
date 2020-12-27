@@ -22,7 +22,7 @@ function test(mode, length, canvas){
     
     console.log("after:\n");
     print(arr);
-    display(arr);
+    draw(arr);
 }
 
 function print(list){
@@ -34,6 +34,6 @@ function print(list){
 
 }
 
-function display(list,canvas){
+// function display(list,canvas){
 
-}
+// }
