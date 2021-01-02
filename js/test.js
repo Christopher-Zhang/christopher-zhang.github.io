@@ -1,5 +1,5 @@
-function test(mode, length, canvas){
-    var arr = gen(length);
+function test(mode, arr, canvas){
+    if(!Array.isArray(arr)) arr = gen(arr);
     console.log("before:\n");
     print(arr);
     switch(mode){
@@ -14,6 +14,9 @@ function test(mode, length, canvas){
             break;
         case "quick":
             arr = quickSort(arr);
+            break;
+        case "heap":
+            arr = heapSort(arr);
             break;
         default:
             console.log("error");
@@ -33,6 +36,7 @@ function print(list){
     console.log("]\n");
 
 }
+
 
 // function display(list,canvas){
 

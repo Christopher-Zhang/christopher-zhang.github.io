@@ -15,21 +15,30 @@
         <label for="merge">Merge</label><br>
         <input type="radio" id="quick" name="sort" value="quick">
         <label for="quick">Quick</label><br>
+        <input type="radio" id="heap" name="sort" value="heap">
+        <label for="heap">Heap</label><br>
 
         <label for="length">Length:</label>
-        <input type="text" id="length" name="length">
-        <button type="button" id="confirm">Confirm</button>
-        <button type="button" id="clear">Clear</button>
+        <!-- <input type="text" id="length" name="length"> -->
+        <textarea id="length" name="length" rows="1" cols="4"></textarea>
+        <button type="button" id="sort">Sort!</button>
         <button type="button" id="generate">New Array</button>
+        <button type="button" id="clear">Clear</button>
+        
     </form>
     <canvas id = "draw" width ="800" height="600"></canvas>
 </body>
 
 <script>
+    
     var canvas = document.getElementById('draw');
     var canvasContext = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
+    window.onload = function(){
+        canvasContext.fillStyle = 'BlanchedAlmond';
+        canvasContext.fillRect(0,0,canvas.width,canvas.height);
+    }
 
     const form = document.querySelector('form');
     var arr;
@@ -40,11 +49,11 @@
     });
     document.querySelector('#clear').addEventListener('click', function(){
         console.log("clear");
-        delete arr;
+        arr = undefined;
         draw(arr);
         console.clear();
     });
-    document.querySelector('#confirm').addEventListener('click', function(){
+    document.querySelector('#sort').addEventListener('click', function(){
         console.log(document.querySelector('#length').value);
         var length = document.querySelector('#length').value;
         var mode;
@@ -55,7 +64,8 @@
                 break;
             }
         }
-        test(mode,length,1);
+        test(mode,arr,canvas);
+
     });
     
     function draw(arr){

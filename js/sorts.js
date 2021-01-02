@@ -3,13 +3,13 @@ function bubbleSort(list){
     
     for(let i = 0; i < length-1; i++){
         for(let j = 0; j < length-i-1; j++){
-            draw(list);
-            drawBoth(list,j,j+1);
+            // draw(list);
+            // setTimeout(drawBoth(list,j,j+1),10,list,j,j+1);
             if(list[j] > list[j+1]){
                 var temp = list[j+1];
                 list[j+1] = list[j];
                 list[j] = temp;
-                drawBoth(list,j+1,j);
+                // setTimeout(drawBoth(list,j+1,j),10,list,j+1,j);
             }
         }
     }
@@ -95,6 +95,41 @@ function quickSort(list){
 
 
     sort(list,0,list.length-1);
+    return list;
+}
+
+function heapSort(list){
+    var length = list.length;
+    for(let i = Math.floor(length/2)-1; i >= 0; i--){
+        heapify(list, length, i);
+    }
+    for(let i = length - 1; i > 0; i--){
+        let temp = list[0];
+        list[0] = list[i];
+        list[i] = temp;
+
+        heapify(list,i,0);
+    }
+
+    function heapify(list, n, index){
+        var max = index;
+        var left = 2 * index + 1;
+        var right = 2 * index + 2;
+
+        if(left < n && list[left] > list[max]){
+            max = left;
+        }
+        if(right < n && list[right] > list[max]){
+            max = right;
+        }
+        if(max != index){
+            let swap = list[index];
+            list[index] = list[max];
+            list[max] = swap;
+
+            heapify(list,n,max);
+        }
+    }
     return list;
 }
 
