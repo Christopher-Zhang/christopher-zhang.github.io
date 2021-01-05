@@ -1,9 +1,22 @@
 .header{
-    background-color:lightslategray;
+    margin-bottom:0.5em;
 
 }
 .header-inner{
     background-color:lightslategray;
+}
+.wrap{
+    margin-top:0.1em;
+}
+
+
+/* Anime animations */
+.intro{
+    position:relative;
+}
+.intro-1{
+    position:absolute;
+    margin:1em 1em 1em 1em;
 }
 .ml4 {
     position: relative;
