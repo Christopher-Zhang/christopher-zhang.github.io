@@ -10,6 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="./js/typewriterAnimation.js"></script>
+    <script>document.onload = startAnimation(5);</script>
     <!-- <script src="jquery-3.5.1.min.js"></script> -->
     <title>Christopher Zhang</title>
 </head>
@@ -46,24 +48,20 @@
     </div>
     <!-- Introduction -->
     
-    <!-- Animation option 2 -->
-    <div class="row justify-content-center">
-        <div class="jumbotron col-md-8">
-            <h1 href="" class="display-1 typewrite-0 text-center" data-period="2000" data-type='[ "Hi!", "My name is Christopher Zhang" ]'>
-                <span class="wrap"></span>
+    <!-- Animation option 1 -->
+    <div class="row justify-content-center pt-3">
+        <div class="jumbotron col-8">
+            <h1 class="display-1 typewrite-0 text-center" data-period="1000" data-type='[ "Hi!", "My name is Christopher Zhang" ]'>
+                <span class="invisible">Lorem ipsum</span><br><span class="wrap"></span>
             </h1>
-            <h1 href="" class="typewrite-1 text-center" data-period="2000" data-type=' [ "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." ]'>
-                <span class="wrap"></span>
+            <h1 class="font-xs typewrite-1 text-center" data-period="500" data-type=' [ "Contact and check me out below" ]'>
+                <span class="invisible">Lorem ipsum</span><span class="wrap"></span>
             </h1>
-            <h1 class="typewrite-2 text-center" data-type=' [ "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." ]'>
-                <span class="wrap"></span>
-            </h1>
-            <script src="./js/typewriterAnimation.js"></script>
         </div>
     </div>
     
-    <!-- Animation option 1 -->
-    <!-- <div>
+    <!-- Animation option 2
+    <div>
         <div class="jumbotron">
             <h1 class="ml4 text-center display-1">
                 <span class="letters letters-1">Hi!</span><br>
@@ -74,20 +72,45 @@
     </div>
     <script src="./js/anime.js"></script> -->
 
+
     <!-- Links -->
-    <div>
-        <a href="https://github.com/Christopher-Zhang">GitHub</a><br>
-        <a href="mailto:chrisconcord@gmail.com">Email</a>
-        <a href="#">Résumé</a>
+    <div class="row jumbotron justify-content-center pt-5 toggle invisible typewrite-2">
+        <div class="col-sm-1 text-center">
+            <a href="https://github.com/Christopher-Zhang">
+                <img src="img/GitHub-Mark-32px.png" alt="Github" style="width:36px;height:36px">
+            </a>
+        </div>
+        <div class="col-sm-1 text-center">
+            <a href="mailto:chrisconcord@gmail.com">
+                <img src="img/mail-24px.svg" alt="Email" style="width:36px;height:36px">
+            </a>
+        </div>
+        <div class="col-sm-1 text-center">
+            <a href="https://www.linkedin.com/in/christopher-z-zhang/">
+                <img src="img/LI-In-Bug.png" alt="Linkedin" style="width:42px;height:36px">
+            </a>
+        </div>
+        </div>
+        <!-- <div>
+            <a href="https://github.com/Christopher-Zhang">GitHub</a><br>
+            <a href="mailto:chrisconcord@gmail.com">Email</a><br>
+            <a href="#">Résumé</a>
+        </div> -->
     </div>
+ 
+    <!-- More Animation -->
+    <div class="row justify-content-center pt-5">
+        <div class="jumbotron col-8">
+            <h1 class="typewrite-3 text-center" data-period="200" data-type=' [ "Or take a look at the projects" ]'>
+                <span class="invisible">Lorem ipsum</span><span class="wrap"></span>
+            </h1>
+            <h1 class="typewrite-4 text-center" data-period="200" data-type=' [ "I&#39ve been working on" ]'>
+                <span class="invisible">Lorem ipsum</span><span class="wrap"></span>
+            </h1>
+        </div>
+    </div>
+    
 
-    <a href="js/test.html">Sorting Algorithms</a>
-
-    <h1 class="ml4">
-        <span class="letters letters-1">Ready</span>
-        <span class="letters letters-2">Set</span>
-        <span class="letters letters-3">Go!</span>
-    </h1>
     
       
     

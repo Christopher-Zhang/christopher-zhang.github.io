@@ -1,6 +1,14 @@
+/*
+    HTML: n >= 0, the animations go in order of 0,1,2 ... n
+    <h1 class="typewrite-n" data-period="{period}" data-type='[ "{text 1}", "{text 2}" ... "{text x}" ]'
+        <span class="wrap"></span>
+    </h1>
+    
+    Add a <span class="invisible">{invisible text}</span> to keep spacing
+ */
+
+
 var blinkRate = 600;
-var animationCount = 4;
-// var done = false;
 var backgroundColor = "#fff";
 var cursorColor = "#000";
 var delay = 500;
@@ -13,15 +21,22 @@ class Typer{
         this.period = parseInt(period, 10) || 2000;
         this.text = '';
         this.isDeleting = false;
-        // this.lines = this.toPrint?this.toPrint.length:0;
         this.lines = toPrint.length;
         this.done = false;
     }
     
 }
-
-
-
+function toggle(cl, tracker){
+    if(cl.contains("invisible")){
+        cl.remove("invisible");
+        cl.add("visible");
+    }
+    else if(cl.contains("visible")){
+        cl.remove("visible");
+        cl.add("invisible");
+    }
+    tracker.done = true;
+}
 function animate(instanceNum,tracker) {
     // var instanceNum = 0;
     var elements = document.getElementsByClassName('typewrite-' + instanceNum);
@@ -30,10 +45,17 @@ function animate(instanceNum,tracker) {
     for(let i = 0; i < elements.length; i++){
         var toPrint = elements[i].getAttribute('data-type');
         var period = elements[i].getAttribute('data-period');
-        if(toPrint){
+        var cl = elements[i].classList;
+        if(cl.contains("toggle")){
+            setTimeout(toggle,1000,cl,tracker);
+        }
+        else if (toPrint){
             typer = new Typer(elements[i], JSON.parse(toPrint), period);
             // console.log(typer.toPrint);
             setTimeout(tick,delay,typer,tracker);
+        }
+        else{
+            tracker.done = true;
         }
     }
 
@@ -54,53 +76,47 @@ function animate(instanceNum,tracker) {
     }
     return blinkInstance;
 }
-
-//give this a Typer
-function tick(that,tracker){
+//give this a Typer and its tracker
+function tick(typer,tracker){
     // console.log("ticking");
-    // console.log(that);
-    // console.log(that.toPrint);
+    // console.log(typer);
+    // console.log(typer.toPrint);
 
     //allows for repeatability, can keep track of total repeats too
-    var localLoopNum = that.loopNum % that.toPrint.length;
-    var fullText = that.toPrint[localLoopNum];
+    var localLoopNum = typer.loopNum % typer.toPrint.length;
+    var fullText = typer.toPrint[localLoopNum];
     // console.log(fullText);
-    let length = that.text.length;
-    if(that.isDeleting) that.text = fullText.substring(0,length-1);
-    else that.text = fullText.substring(0,length+1);
-    that.el.innerHTML = '<span class="wrap">' + that.text + '</span>';
+    let length = typer.text.length;
+    if(typer.isDeleting) typer.text = fullText.substring(0,length-1);
+    else typer.text = fullText.substring(0,length+1);
+    typer.el.innerHTML = '<span class="wrap">' + typer.text + '</span>';
+    var delta = 150 - Math.random() * 100;
+    if(typer.isDeleting) delta/=2;
 
-
-    //type and delete speed
-    var delta = 200 - Math.random() * 100;
-    if(that.isDeleting) delta/=2;
-
-    if(!that.isDeleting && that.text === fullText){
-        delta = that.period;
-        that.isDeleting = true;
-        // if(localLoopNum >= that.lines){ 
-        //     that.isDeleting = true;
-        //     that.done = true;
+    if(!typer.isDeleting && typer.text === fullText){
+        delta = typer.period;
+        typer.isDeleting = true;
+        // if(localLoopNum >= typer.lines){ 
+        //     typer.isDeleting = true;
+        //     typer.done = true;
         // }
-        if(that.loopNum == that.lines-1) that.done = true;
-    } else if(that.isDeleting && that.text===''){
-        that.isDeleting = false;
-        that.loopNum++;
+        if(typer.loopNum == typer.lines-1) typer.done = true;
+    } else if(typer.isDeleting && typer.text===''){
+        typer.isDeleting = false;
+        typer.loopNum++;
         delta = 500;
     }
     
-    // that = this;
+    // typer = this;
     // console.log(this);
     // console.log(tracker);
-    if(!that.done) setTimeout(tick,delta,that,tracker);
+    if(!typer.done) setTimeout(tick,delta,typer,tracker);
     else tracker.done = true;
 
 }
-
 function scheduler(trackers){
-    //if array is empty
-    // console.log(trackers);
     var tracker;
+    //if array is empty
     if(!Array.isArray(trackers) || !trackers.length){
         console.log("scheduler done");
         return;
@@ -128,17 +144,16 @@ function scheduler(trackers){
         }
     }
 }
-
-window.onload = function(){
+function startAnimation(animationCount){
     var trackers = Array(animationCount);
     for(let i = 0; i < animationCount; i++){
-        trackers[i] = {done:false, index:Number(i)};
+        trackers[i] = {done:false, index:i};
         console.log(trackers[i]);
     }
-    // setTimeout(scheduler,500,trackers);
-
     //dummy tracker
     trackers.unshift({done:true});
-    var id = setInterval(scheduler,delay,trackers);
-    setTimeout(clearInterval,100000,id);
+    var id = setInterval(scheduler,100,trackers);
+    id = id;
+    // setTimeout(clearInterval,100000,id);
 }
+
