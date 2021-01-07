@@ -35,7 +35,7 @@ function toggle(cl, tracker){
         cl.remove("visible");
         cl.add("invisible");
     }
-    tracker.done = true;
+    setTimeout(trackerDone,delay,tracker);
 }
 function animate(instanceNum,tracker) {
     // var instanceNum = 0;
@@ -58,11 +58,11 @@ function animate(instanceNum,tracker) {
             tracker.done = true;
         }
     }
-
     //CSS blinking cursor
     var css = document.createElement("style");
     var mode = [true];
     var blinkInstance = setInterval(blink,blinkRate,mode);
+
     function blink(mode){
         if(mode[0]){
             css.innerHTML = ".typewrite-" + instanceNum + " > .wrap { border-right: 0.08em solid" + backgroundColor + "}";
@@ -78,10 +78,6 @@ function animate(instanceNum,tracker) {
 }
 //give this a Typer and its tracker
 function tick(typer,tracker){
-    // console.log("ticking");
-    // console.log(typer);
-    // console.log(typer.toPrint);
-
     //allows for repeatability, can keep track of total repeats too
     var localLoopNum = typer.loopNum % typer.toPrint.length;
     var fullText = typer.toPrint[localLoopNum];
@@ -96,23 +92,17 @@ function tick(typer,tracker){
     if(!typer.isDeleting && typer.text === fullText){
         delta = typer.period;
         typer.isDeleting = true;
-        // if(localLoopNum >= typer.lines){ 
-        //     typer.isDeleting = true;
-        //     typer.done = true;
-        // }
         if(typer.loopNum == typer.lines-1) typer.done = true;
     } else if(typer.isDeleting && typer.text===''){
         typer.isDeleting = false;
         typer.loopNum++;
         delta = 500;
     }
-    
-    // typer = this;
-    // console.log(this);
-    // console.log(tracker);
     if(!typer.done) setTimeout(tick,delta,typer,tracker);
-    else tracker.done = true;
-
+    else setTimeout(trackerDone,delay,tracker);
+}
+function trackerDone(tracker){
+    tracker.done = true;
 }
 function scheduler(trackers){
     var tracker;
@@ -121,7 +111,6 @@ function scheduler(trackers){
         console.log("scheduler done");
         return;
     } 
-    
     else{
         tracker = trackers[0];
         console.log(tracker);
@@ -129,12 +118,12 @@ function scheduler(trackers){
             console.log("tracker done!");
             console.log(tracker);
             tracker = trackers.shift();
-            if(tracker.blinkID){
-                clearInterval(tracker.blinkID);
+            if(tracker.blinkID && trackers.length>0){
+            // if(tracker.blinkID){
                 var css = document.createElement("style");
+                clearInterval(tracker.blinkID);
                 css.innerHTML = ".typewrite-" + tracker.index + " > .wrap { border-right:"+backgroundColor+"}";
                 document.body.appendChild(css);
-
             }
             if(trackers.length!=0){
                 tracker = trackers[0];
