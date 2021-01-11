@@ -1,0 +1,4 @@
+1/10
+- make safe page switching from sorting project page
+- fix up ui of sorting project page
+- port the homepage content to react app

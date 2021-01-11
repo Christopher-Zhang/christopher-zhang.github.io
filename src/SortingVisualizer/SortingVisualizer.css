@@ -1,0 +1,17 @@
+.array-container{
+    /* position: absolute; */
+    /* top: 100px; */
+    /* left: 100px; */
+    visibility: true;
+}
+
+.array-value{
+    width: 10px;
+    display:inline-block;
+    margin: 0 1px;
+}
+.array-value-placeholder{
+    width:0;
+    display:inline-block;
+    margin:0;
+}
