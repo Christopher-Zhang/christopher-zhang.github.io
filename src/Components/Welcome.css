@@ -1,0 +1,15 @@
+.welcome hr{
+    width:95%;
+    border-top: 2px solid #3f3f3f;
+    margin: auto;
+    margin-top: .3rem;
+    margin-bottom: 1rem;
+}
+.padding{
+    padding-bottom: 2rem;
+}
+.welcome{
+    padding-top: 2rem;
+    width: 75%;
+    margin: 0 auto;
+}

@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import './SortingVisualizer.css';
 import SortingMenu from './SortingMenu';
+import { Route, Link, Switch } from "react-router-dom";
 
 const NORMAL_COLOR = 'pink';
 const SELECT_COLOR = 'red';
-const PRIMARY_BOUNDARY_COLOR = 'green';
-const SECONDARY_BOUNDARY_COLOR = 'blue';
+// const PRIMARY_BOUNDARY_COLOR = 'green';
+// const SECONDARY_BOUNDARY_COLOR = 'blue';
 const DELAYS = [100,75,50,25,10];
-// const DELAY = 10;
 
 class SortingVisualizer extends Component {
     constructor(props){
         super(props);
         this.handleSpeedChange = this.handleSpeedChange.bind(this);
+        this.stopModule = this.stopModule.bind(this);
         this.state = {
             array: [],
             max: 100,
@@ -30,8 +31,8 @@ class SortingVisualizer extends Component {
         const arr = this.state.array;
         const instanceName = "array-value" + this.state.id;
         return (
-            <div id={this.state.id}>
-                <div className="array-container">
+            <div className="sorting-visualizer" id={this.state.id}>
+                <div className="array">
                     <div className="array-value-placeholder invisible"
                         style={{
                             height: `${this.state.max * 2}px`,
@@ -49,44 +50,75 @@ class SortingVisualizer extends Component {
                         }}></div>
                     ))}
                 </div>
+                <div className="array-container">
+
+                </div>
                 <SortingMenu 
                     parentHandleSpeedChange = {this.handleSpeedChange}
+                    parentStopModule = {this.stopModule}
                     parent={this}
                     id={this.state.id}
+                    isSorting={this.state.isSorting}
                 ></SortingMenu>
             </div>
           );
     }
     componentDidMount(){
-        // this.setState({instance: document.getElementById(this.props.id)});
-        // console.log(document);
         console.log(this.props);
-        this.newArray(50);
+        this.newArray(this.props.length);
     }
     handleSpeedChange(speed){
         let delay = DELAYS[speed];
         this.setState({delay:delay});
     }
-    
+    stopModule(){
+        let length = this.state.array.length;
+        console.log('reset parent');
+        this.setState({abort:true});
+        // setTimeout(this.newArray(length), this.state.delay * 3, length);
+        // this.newArray(length);
+        setTimeout(
+            ()=>{this.setState({abort:false})},
+            this.state.delay * 2
+        );
+
+    }
+    cleanArray(){
+        const arrayValues = document.getElementsByClassName('array-value'+this.state.id);
+        let length = arrayValues.length;
+        for(let i = 0; i < length; i++){
+            arrayValues[i].style.backgroundColor = NORMAL_COLOR;   
+        }
+    }
     async sweep(array){
         //highlights the whole array after done sorting
         let length = array.length;
         const arrayValues = document.getElementsByClassName('array-value'+this.state.id);
         for(let i = 0; i < length; i++){
-            if(this.state.abort) return;
-            arrayValues[i].style.backgroundColor = SELECT_COLOR;
             await this.delay();
+            arrayValues[i].style.backgroundColor = SELECT_COLOR;
+            
         }
     }
+    startSort(){
+        this.cleanArray();
+        this.setState({isSorting:true});
+    }
+    endSort(){
+        this.setState({isSorting:false});
+    }
     async bubbleSort(){
+        this.startSort();
+        await this.delay();
         console.log("bubble");
         let array = this.getArrayCopy();
         let length = array.length;
     
         for(let i = 0; i < length-1; i++){
             for(let j = 0; j < length-i-1; j++){
-                if(this.state.abort) return;
+    
                 // await this.delay();
+                await this.delay();
                 const arrayValues = document.getElementsByClassName('array-value'+this.state.id);
                 arrayValues[j].style.backgroundColor = SELECT_COLOR;
                 arrayValues[j+1].style.backgroundColor = SELECT_COLOR;
@@ -94,43 +126,51 @@ class SortingVisualizer extends Component {
                     // await this.swapAsync(j,j+1,array); 
                     this.swap(j,j+1,array);
                 }
-                await this.delay();
+                
                 arrayValues[j].style.backgroundColor = NORMAL_COLOR;
                 // arrayValues[j+1].style.backgroundColor = NORMAL_COLOR;
             }
             //makes sure the first value is highlighted at the end
             document.getElementsByClassName('array-value'+this.state.id)[0].style.backgroundColor = SELECT_COLOR;
         }
+        this.endSort();
         return array;
     }
     async insertionSort(){
+        this.startSort();
+        await this.delay();
+        
         console.log("insertion");
         let array = this.getArrayCopy();
         var length = array.length;
 
         for(let i = 1; i < length; i++){
-            if(this.state.abort) return;
+
             const arrayValues = document.getElementsByClassName('array-value'+this.state.id);
             let flag = false;
             let j;
             for(j = i; j >= 1 && array[j] < array[j-1]; j--){
-                if(this.state.abort) return;
+    
                 flag = true;
                 arrayValues[j].style.backgroundColor = SELECT_COLOR;
                 await this.swapAsync(j,j-1,array);
                 arrayValues[j].style.backgroundColor = NORMAL_COLOR;
             }
             if(flag){
-                if(this.state.abort) return;
+    
                 arrayValues[j].style.backgroundColor = SELECT_COLOR;
                 await this.delay();
                 arrayValues[j].style.backgroundColor = NORMAL_COLOR;
             }
         }
         await this.sweep(array);
+        this.endSort();
         return array;
     }
     async mergeSort(){
+        this.startSort();
+        await this.delay();
+        
         let array = this.getArrayCopy();
         let dummyArray = array.slice();
         let realArray = array.slice();
@@ -138,6 +178,7 @@ class SortingVisualizer extends Component {
         await this.mergeSortRecursive(array,0,array.length-1,dummyArray);
         console.log(array);
         // await this.sweep(array);
+        this.endSort();
         return array;
     }
     async mergeSortRecursive(array, start, end, dummyArray){
@@ -193,6 +234,7 @@ class SortingVisualizer extends Component {
 
         }
         await this.mergeCopy(array,dummyArray,start,end);
+        await this.delay();
     }
     async mergeCopy(targetArray, dummyArray, start, end){
         for(let i = start; i <= end; i++){
@@ -206,15 +248,21 @@ class SortingVisualizer extends Component {
         }
     }
     newArray(length){
-        const arr = [];
+        let arr = [];
         for(let i = 0; i < length; i++){
             arr.push(this.generateValue());
         }
         this.setState({array: arr});
         let arrayValues = document.getElementsByClassName('array-value'+this.state.id);
-        for(let i = 0; i < arrayValues.length; i++){
-            arrayValues[i].style.backgroundColor = NORMAL_COLOR;
-        }
+        setTimeout(
+            function(arrayValues){
+                for(let i = 0; i < arrayValues.length; i++){
+                    arrayValues[i].style.backgroundColor = NORMAL_COLOR;
+                }
+            },
+            10,arrayValues
+        )
+        
     }
     generateValue(){
         const {state} = this;
@@ -242,12 +290,12 @@ class SortingVisualizer extends Component {
         }
         return new Promise((resolve,reject) => {
             if(!valid) reject(new Error('invalid index'));
-            // setTimeout(resolve,this.state.delay);
-            resolve();
+           
+            if(!this.state.abort) resolve();
         });
     }
     swap(a,b,array){
-        let valid = this.isValidIndex(a) && this.isValidIndex(b)
+        let valid = this.isValidIndex(a) && this.isValidIndex(b) && !this.state.abort;
         if(valid){
             let temp = array[a];
             array[a] = array[b];
@@ -257,10 +305,17 @@ class SortingVisualizer extends Component {
             )
         }
     }
-    delay(){
-        return new Promise((resolve)=>{
-            setTimeout(resolve,this.state.delay);
+    async delay(){
+        return new Promise((resolve,reject)=>{   
+            if(!this.state.abort) setTimeout(resolve,this.state.delay);
+            else{
+                this.setState({isSorting:false});
+                reject(); 
+            } 
         });
+    }
+    abort(){
+        this.setState({abort:true});
     }
     isValidIndex(index){
         if(index >= this.state.array.length || index < 0) return false;

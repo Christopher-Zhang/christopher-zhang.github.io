@@ -2,6 +2,7 @@
 import './App.css';
 import SortingVisualizerPage from './Pages/SortingVisualizerPage';
 import Navbar from './Components/Navbar';
+import HomePage from './Pages/HomePage';
 import { Link, Route, Switch } from "react-router-dom";
 
 const Home = () => (
@@ -20,7 +21,7 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
       <Switch>
-        <Route exact path="/"><Home /></Route>
+        <Route exact path="/"><HomePage /></Route>
         <Route path="/about"><About /></Route>
         <Route path="/projects/sorting-visualizer">
           <SortingVisualizerPage></SortingVisualizerPage>

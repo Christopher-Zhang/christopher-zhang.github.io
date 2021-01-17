@@ -5,13 +5,16 @@
     visibility: true;
 }
 
-.array-value{
+/* .array-value{
     width: 10px;
     display:inline-block;
     margin: 0 1px;
-}
+} */
 .array-value-placeholder{
     width:0;
     display:inline-block;
     margin:0;
 }
+/* .sorting-visualizer{
+    display:inline-flex;
+} */
