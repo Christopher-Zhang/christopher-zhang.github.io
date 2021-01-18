@@ -3,7 +3,7 @@ import './App.css';
 import SortingVisualizerPage from './Pages/SortingVisualizerPage';
 import Navbar from './Components/Navbar';
 import HomePage from './Pages/HomePage';
-import { Link, Route, Switch } from "react-router-dom";
+import { Link, Route, Switch, HashRouter} from "react-router-dom";
 
 const Home = () => (
   <div>
@@ -19,20 +19,24 @@ const About = () =>(
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
+      <Navbar />
       <Switch>
-        <Route exact path={process.env.PUBLIC_URL + '/'}>
-          <HomePage />
-        </Route>
-        <Route path={process.env.PUBLIC_URL + '/about'}>
-          <About />
-        </Route>
-        <Route path={process.env.PUBLIC_URL + "/projects/sorting-visualizer"}>
-          <SortingVisualizerPage></SortingVisualizerPage>
-        </Route>
+        <Route 
+          exact 
+          path={'/'} 
+          component={HomePage}
+        ></Route>
+        <Route 
+          exact 
+          path={'/about'}
+          component={About}
+          ></Route>
+        <Route 
+          exact 
+          path={"/projects/sorting-visualizer"}
+          component={SortingVisualizerPage}
+          ></Route>
       </Switch>
-      
-
     </div>
   );
 }

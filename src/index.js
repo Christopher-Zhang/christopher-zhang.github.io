@@ -6,7 +6,7 @@ import { BrowserRouter, render } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
 
 ReactDOM.render(
-  <BrowserRouter forceRefresh={true}>
+  <BrowserRouter forceRefresh={true}> 
     <ScrollToTop />
     <App />
   </BrowserRouter>,
