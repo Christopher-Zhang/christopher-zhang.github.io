@@ -6,14 +6,9 @@ import HomePage from './Pages/HomePage';
 import PageNotFound from './Pages/PageNotFound';
 import { Link, Route, Switch, HashRouter} from "react-router-dom";
 
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)
 const About = () =>(
-  <div>
-    <h2>About</h2>
+  <div className="p-5">
+    <h2>This page is under construction.</h2>
   </div>
 )
 
