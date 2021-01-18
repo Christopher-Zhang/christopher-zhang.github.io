@@ -21,9 +21,13 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
       <Switch>
-        <Route exact path="/"><HomePage /></Route>
-        <Route path="/about"><About /></Route>
-        <Route path="/projects/sorting-visualizer">
+        <Route exact path={process.env.PUBLIC_URL + '/'}>
+          <HomePage />
+        </Route>
+        <Route path={process.env.PUBLIC_URL + '/about'}>
+          <About />
+        </Route>
+        <Route path={process.env.PUBLIC_URL + "/projects/sorting-visualizer"}>
           <SortingVisualizerPage></SortingVisualizerPage>
         </Route>
       </Switch>
