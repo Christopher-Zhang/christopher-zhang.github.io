@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import Typewriter from '../Components/Typewriter';
 import Banner from '../Components/Banner';
+import CaptionedButton from '../Components/CaptionedButton';
 import { Link, Route, Switch } from "react-router-dom";
 import Welcome from "../Components/Welcome";
 import { colorCode } from '../variables';
+import Preview from '../Components/Preview';
+import Footer from '../Components/Footer';
+
 class HomePage extends Component {
     state = {  };
     scheduleAnimations(){
@@ -14,18 +18,49 @@ class HomePage extends Component {
         return (
             <div className="home-page">
                 <Banner />
-                <div className="container-fluid jumbotron row py-5" style={{backgroundColor:colorCode.light}}>
-                    <div className="col-xs-12 col-sm-12 col-md-9 col-lg-8 col-xl-8 text-start text-md-end">
-                        <h1 className="display-5">This site is under construction</h1>
-                    </div>
-                    <div className="col-xs-12 col-sm-12 col-md-3 col-lg-4 col-xl-4 text-start">
-                        <button className="btn btn-outline-secondary btn-lg">I am a button!</button>
-                    </div>
-                </div>
                 <Welcome
-                    headerText={"Hello and welcome"} 
-                    details={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis ex mattis, mattis lacus vel, vestibulum nisi. Integer nec vestibulum nunc. Integer ultricies nulla dolor, sed hendrerit justo cursus in. Quisque vehicula metus ipsum, ac vehicula risus venenatis sed. Phasellus dui mauris, mattis tincidunt vulputate at, aliquet ac mauris. Pellentesque imperdiet dignissim lacus in pretium. Vivamus arcu nibh, pharetra non ex non, varius maximus neque. Integer lobortis at turpis eu faucibus. Sed ultricies bibendum lorem, vitae convallis purus dapibus quis. Nullam nec mi ac lacus accumsan placerat a fermentum neque. Donec id elementum est. Orci varius natoque penatibus et magnis."}
+                    backgroundColor={colorCode.offWhite}
+                    headerText={"Welcome to my humble abode"} 
+                    details={
+                        <div>
+                            I am currently a <b>sophomore</b> at the <b>University of Illinois at Urbana-Champaign</b> studying <b>electrical and computer engineering</b>. 
+                            <br></br>I have experience programming in <b>Java, Python, C, and C++</b> from previous classes and my own pursuits. 
+                            <br></br>Starting December 2020, I started learning various web technologies including: <b>HTML, CSS, Javascript, and ReactJS</b>. 
+                            <br></br>This website will grow along with me as I grow as a developer.
+                            <br></br>I hope you have a wonderful day.
+                        </div>    
+                    }
                 ></Welcome>
+                <CaptionedButton 
+                    backgroundColor={colorCode.light}
+                    captionText={
+                        <div>
+                            <b>Take a look at my most recent project: </b>
+                            A sorting algorithm visualizer built with ReactJS.<br></br>
+                            Currently implements bubble-sort, insertion-sort, and merge-sort.
+                        </div>
+                    }
+                    buttonText={"Take me there"}
+                    buttonLink={"/projects/sorting-visualizer"}
+                ></CaptionedButton>
+                <Welcome
+                    backgroundColor={colorCode.offWhite}
+                    headerText={"Projects"}
+                ></Welcome>
+                {/* <div className="preview-header container-fluid">
+                    <div className="row text-center">
+                        <div className="col-12">
+                            <h1 className="display-4">Projects</h1>
+                        </div>
+                        <hr></hr>
+                    </div>
+                </div> */}
+                <Preview
+                    backgroundColor={colorCode.offWhite}
+                ></Preview>
+                <Footer
+                    backgroundColor={colorCode.dark}
+                ></Footer>
                 
 
                 {/* <div className="container-fluid">

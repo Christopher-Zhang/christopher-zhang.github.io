@@ -8,13 +8,12 @@ class Navbar extends Component {
     render() { 
         return (  
             // <div className="container-fluid bg-dark">
-                <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-4 px-sm-5 sticky-top"> 
-                    <h1><Link className="navbar-brand" to="/">Christopher Zhang</Link></h1>
-                    
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <nav role="navigation" className="navbar navbar-expand-lg bg-dark navbar-dark py-3 px-sm-4 px-lg-5 sticky-top"> 
+                    <h1><Link className="navbar-brand ps-sm-5 ps-4" to="/">Christopher Zhang</Link></h1>
+                    <button className="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <div className="collapse navbar-collapse justify-content-end pe-sm-5 pe-4" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
                                 <Link className="nav-link text-white" to="/">Home</Link>

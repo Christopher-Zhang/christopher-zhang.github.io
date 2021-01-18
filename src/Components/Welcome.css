@@ -6,10 +6,12 @@
     margin-bottom: 1rem;
 }
 .padding{
-    padding-bottom: 2rem;
-}
+    padding-bottom: 4rem;
+    padding-top: 2rem;
+ }
 .welcome{
     padding-top: 2rem;
     width: 75%;
     margin: 0 auto;
+    font-family: 'Poppins' sans-serif;
 }

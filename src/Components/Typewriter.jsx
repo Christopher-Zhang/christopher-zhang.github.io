@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-
-
-
 /*
+ * FUTURE IMPLEMENTATION
  * content is an array of objects with following format:
  *  contentObject = {
  *      text: "Lorem Ipsum",
@@ -83,7 +81,6 @@ class Typewriter extends Component {
         const {currentInstance} = this.state;
         const {cursor} = this.state;
         const element = document.getElementById("cursor-"+currentInstance);
-        let borderStyle;
         
         if(cursor){
             // borderStyle = "0.05em solid " + backgroundColor; 

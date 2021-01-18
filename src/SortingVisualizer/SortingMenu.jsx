@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SortingMenu.css';
 
 const SPEEDS = [100,75,50,25,10];
 class SortingMenu extends Component {
@@ -37,15 +38,16 @@ class SortingMenu extends Component {
         const speedSliderID = "speed-slider-" + id;
         const sliderID = "slider-" + id;
         return ( 
-            <div className="row justify-content-center">
-                <div className="col-3">
+            <div className="row justify-content-center container-fluid">
+                <div className="col-xs-12 col-sm-9 col-md-6 col-lg-5 col-xl-4 col-xxl-3 sorting-menu">
                     
-                    <button className="mb-2" onClick={()=> parent.newArray(parent.state.array.length)} disabled={disabled}>New Array</button><br></br>
+                    <button onClick={()=> parent.newArray(parent.state.array.length)} disabled={disabled}>New Array</button>
+                    <button onClick={()=> this.handleStop()}>Stop</button>
+                    <br></br>
                     <button onClick={()=> parent.bubbleSort()} disabled={disabled}>Bubble Sort</button>
                     <button onClick={()=> parent.insertionSort()} disabled={disabled}>Insertion Sort</button>
                     <button onClick={()=> parent.mergeSort()} disabled={disabled}>Merge Sort</button>
-                    <br></br>
-                    <button classname="mt-2" onClick={()=> this.handleStop()}>Stop</button>
+                    
                     <br></br>
                     <div className={sliderID}>
                         <label for={speedSliderID} className="form-label">Speed:</label>

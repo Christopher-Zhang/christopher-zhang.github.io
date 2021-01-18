@@ -9,5 +9,6 @@ const colorCode = {
     dark: "#333333",
     light: "#F2F3F4",
     bg: "#CCCCCC",
+    offWhite: "#f7f8fc"
 }
 export {colorCode};
