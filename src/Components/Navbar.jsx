@@ -27,8 +27,8 @@ class Navbar extends Component {
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-md-end">
                                     <Link className="dropdown-item" to="/projects/sorting-visualizer">Sorting Algorithm Visualizer</Link>
-                                    <Link className="dropdown-item">Project 2</Link>
-                                    <Link className="dropdown-item">Project 3</Link>
+                                    <Link className="dropdown-item disabled">More coming soon!</Link>
+                                    {/* <Link className="dropdown-item">Project 3</Link> */}
                                 </div>
                             </li>
                             <li className="nav-item">

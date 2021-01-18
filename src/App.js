@@ -3,6 +3,7 @@ import './App.css';
 import SortingVisualizerPage from './Pages/SortingVisualizerPage';
 import Navbar from './Components/Navbar';
 import HomePage from './Pages/HomePage';
+import PageNotFound from './Pages/PageNotFound';
 import { Link, Route, Switch, HashRouter} from "react-router-dom";
 
 const Home = () => (
@@ -36,6 +37,7 @@ function App() {
           path={"/projects/sorting-visualizer"}
           component={SortingVisualizerPage}
           ></Route>
+        <Route component={PageNotFound}></Route>
       </Switch>
     </div>
   );

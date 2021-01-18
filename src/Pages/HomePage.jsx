@@ -40,7 +40,7 @@ class HomePage extends Component {
                             Currently implements bubble-sort, insertion-sort, and merge-sort.
                         </div>
                     }
-                    buttonText={"Take me there"}
+                    buttonText={"Take me there!"}
                     buttonLink={"/projects/sorting-visualizer"}
                 ></CaptionedButton>
                 <Welcome
