@@ -20,14 +20,12 @@ class HomePage extends Component {
                 <Banner />
                 <Welcome
                     backgroundColor={colorCode.offWhite}
-                    headerText={"Welcome to my humble abode"} 
+                    headerText={"Welcome to my website!"} 
                     details={
                         <div>
-                            I am currently a <b>sophomore</b> at the <b>University of Illinois at Urbana-Champaign</b> studying <b>electrical and computer engineering</b>. 
-                            <br></br>I have experience programming in <b>Java, Python, C, and C++</b> from previous classes and my own pursuits. 
-                            <br></br>Starting December 2020, I started learning various web technologies including: <b>HTML, CSS, Javascript, and ReactJS</b>. 
-                            <br></br>This website will grow along with me as I grow as a developer.
-                            <br></br>I hope you have a wonderful day.
+                            I am currently a <b>Junior</b> at the <b>University of Illinois at Urbana-Champaign</b> studying <b>computer engineering</b>. 
+                            <br></br>I have experience programming in <b>Java, Javascript, Python, C, and C++</b> from previous classes and projects.
+                            <br></br>
                         </div>    
                     }
                 ></Welcome>
@@ -36,12 +34,11 @@ class HomePage extends Component {
                     captionText={
                         <div>
                             <b>Take a look at my most recent project: </b>
-                            A sorting algorithm visualizer built with ReactJS.<br></br>
-                            Currently implements bubble-sort, insertion-sort, and merge-sort.
+                            A Pokedex Quiz that uses <a href="https://pokeapi.co/" target='_blank'>https://pokeapi.co/</a><br></br>
                         </div>
                     }
                     buttonText={"Take me there!"}
-                    buttonLink={"/projects/sorting-visualizer"}
+                    buttonLink={"/projects/pokedex-quiz"}
                 ></CaptionedButton>
                 <Welcome
                     backgroundColor={colorCode.offWhite}

@@ -27,13 +27,14 @@ class Navbar extends Component {
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-md-end">
                                     <Link className="dropdown-item" to="/projects/sorting-visualizer">Sorting Algorithm Visualizer</Link>
-                                    <Link className="dropdown-item disabled">More coming soon!</Link>
+                                    <Link className="dropdown-item" to="/projects/pokedex-quiz">Pokedex Quiz</Link>
+                                    <Link className="dropdown-item-disabled">More coming soon!</Link>
                                     {/* <Link className="dropdown-item">Project 3</Link> */}
                                 </div>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <a className="nav-link text-white" href="../files/Resume Website Ver.pdf" target="_blank">Résumé</a>
-                            </li>
+                            </li> */}
 
                         </ul>                    
                     </div>

@@ -10,7 +10,6 @@ export default function Footer(props){
                 <div class="col-md-4">
                     <h1 className="display-5">Contact me</h1>
                     <hr class="light"></hr>
-                    <p>978-844-8255</p>
                     <p>chrisconcord@gmail.com</p>
                     <p>Massachusetts, USA</p>
                 </div>
