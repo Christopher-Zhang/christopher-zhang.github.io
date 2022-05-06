@@ -5,6 +5,13 @@ object-assign
 */
 
 /*!
+    localForage -- Offline Storage, Improved
+    Version 1.10.0
+    https://localforage.github.io/localForage
+    (c) 2013-2017 Mozilla, Apache License 2.0
+*/
+
+/*!
   * Bootstrap v5.0.0-beta1 (https://getbootstrap.com/)
   * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
