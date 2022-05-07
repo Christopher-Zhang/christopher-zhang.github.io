@@ -50,20 +50,20 @@ class Colordle extends Component{
             ct[i] = carr;
         }
         this.state = {
-            color: this.generateHexColor(0xfff),
+            color: this.generateHexColor(this.getSeed(1)),
             value_table: vt,
             color_table: ct,
             row: 0,
             index: 0
         };
-        this.counter = 0;
+        this.counter = 1;
         
     }
     render(){
         let num = Number("0x" +this.state.color);
         return (
             <div className="colordle">
-                <div className="color-display" style={{backgroundColor: "#" + this.state.color, color:(this.getContrastColor(Number("0x"+this.state.color)))}}>Current Color</div>
+                <div className="color-display" style={{backgroundColor: "#" + this.state.color, color:(this.getContrastColor(Number("0x"+this.state.color)))}}>Current Color: {this.counter}</div>
                 <div style={{display:'flex', justifyContent: 'center'}}>
                     
                     {/* <button onClick={()=> this.clearBoard()}>Clear</button> */}
@@ -79,13 +79,21 @@ class Colordle extends Component{
                         </div>
                     ))}
                 </div>
-                <button onClick={()=> this.generateHexColor(++this.counter)}>New Color</button>
+                <button onClick={()=> this.generateHexColor(this.getSeed(++this.counter))}>New Color</button>
             </div>
         );
     }
     componentDidMount(){
         document.addEventListener('keydown', this.keyboardHandler.bind(this));
         this.setState();
+    }
+    getSeed(offset){
+        let date = new Date();
+        let day = date.getDay();
+        let month = date.getMonth();
+        let year = date.getFullYear();
+        let seed = day.toString() + month.toString() + year.toString();
+        return Number(seed) * offset;
     }
     generateHexColor(seed) {
         this.clearBoard();
@@ -200,7 +208,7 @@ class Colordle extends Component{
         let state = {color_table: this.state.color_table};
         state.color_table[this.state.row] = feedback;
         state.row = this.state.row + 1;
-        if(state.row >= NUM_GUESSES) state.row = NUM_GUESSES - 1;
+        if(state.row >= NUM_GUESSES) state.row = NUM_GUESSES;
         state.index = 0;
         this.setState(state);
     }
@@ -228,7 +236,7 @@ class Tile extends Component{
     constructor(props){
         super(props);
         this.state = {
-            color: COLORS[props.color],
+            color: props.color,
             value: props.value
         }
     }
@@ -240,18 +248,16 @@ class Tile extends Component{
             margin: "2px",
             borderStyle: "solid",
             borderColor: "black",
-            color: "black"
+            color: "black",
+            textAlign: "center"
         };
         return(
-        <div className={this.props.className} style={css}>
-            <p>{this.state.value}</p>
-        </div>
+            <input style={css} className={this.props.className} value={this.state.value} type="text"></input>
         );
     }
     componentDidUpdate(prevProps){
         if(prevProps.value !== this.props.value || prevProps.color !== this.props.color){
             this.setState({value: this.props.value, color: this.props.color});
-            console.log("Updated!");
         }        
     }
 }
