@@ -1,0 +1,58 @@
+.colordle-page {
+    text-align: center;
+}
+
+.colordle-header {
+    background-color: #282c34;
+    display: flex;
+    justify-content: center;
+    font-size: calc(10px + 4vmin);
+    color: white;
+}
+
+.colordle {
+    justify-content: center;
+}
+.guess-board{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: lightslategrey;
+}
+.color-display{
+    /* max-width: 50px; */
+    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+button{
+    margin-left: 5px;
+}
+
+.Color-wheel{
+    height: calc(10px + 4vmin);
+    width: calc(10px + 4vmin);
+    pointer-events: none;
+    border: 2rem;
+    margin-top: 0.5rem;
+    margin-left: 0.25rem;
+  }
+
+@media (prefers-reduced-motion: no-preference) {
+    .Color-wheel {
+        animation: Color-wheel-spin infinite 20s linear;
+    }
+}
+
+@keyframes Color-wheel-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+

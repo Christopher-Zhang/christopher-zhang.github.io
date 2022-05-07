@@ -1,5 +1,7 @@
 import React from 'react';
 import sortingGIF from '../img/sorting-visualizer.gif';
+import colordle from '../img/colordle.png';
+import pokequiz from '../img/pokedex-quiz.png';
 import { Link, Route, Switch } from "react-router-dom";
 
 export default function Preview(props){
@@ -7,11 +9,11 @@ export default function Preview(props){
     return(
         <div className="preview container-fluid padding row justify-content-center" style={{backgroundColor:backgroundColor}}>
             <div className="col-3 card text-start mx-3" style={{width:"18rem"}}>
-                <img src={sortingGIF} className="card-img-top invisible" alt="animated sorting visualizer"></img>
+                <img src={pokequiz} className="card-img-top" alt="pokedex quiz"></img>
                 <div className="card-body">
-                    <h5 className="card-title">Placeholder</h5>
-                    <p className="card-text">More projects coming soon!</p>
-                    <button className="btn btn-primary disabled">Check it out!</button>
+                    <h5 className="card-title">Pokedex Quiz</h5>
+                    <p className="card-text">A Fun Pokedex Quiz</p>
+                    <Link to="/projects/pokedex-quiz"><button className="btn btn-primary ">Check it out!</button></Link>
                 </div>
             </div>
             <div className="col-3 card text-start mx-3" style={{width:"18rem"}}>
@@ -23,11 +25,11 @@ export default function Preview(props){
                 </div>
             </div>
             <div className="col-3 card text-start mx-3" style={{width:"18rem"}}>
-                <img src={sortingGIF} className="card-img-top invisible" alt="animated sorting visualizer"></img>
+                <img src={colordle} className="card-img-top" alt="colordle"></img>
                 <div className="card-body">
-                    <h5 className="card-title">Placeholder</h5>
-                    <p className="card-text">More projects coming soon!</p>
-                    <button className="btn btn-primary disabled">Check it out!</button>
+                    <h5 className="card-title">Colordle</h5>
+                    <p className="card-text">Wordle, but its hex color values!</p>
+                    <Link to="/projects/colordle"><button className="btn btn-primary">Check it out!</button></Link>
                 </div>
             </div>
         </div>

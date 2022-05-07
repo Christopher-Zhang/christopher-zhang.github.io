@@ -4,7 +4,8 @@ import SortingVisualizerPage from './Pages/SortingVisualizerPage';
 import Navbar from './Components/Navbar';
 import HomePage from './Pages/HomePage';
 import PageNotFound from './Pages/PageNotFound';
-import PokedexQuiz from './Pages/PokedexQuiz'
+import PokedexQuiz from './Pages/PokedexQuiz';
+import ColordlePage from './Pages/Colordle';
 import { Link, Route, Switch, HashRouter} from "react-router-dom";
 
 const About = () =>(
@@ -37,6 +38,11 @@ function App() {
           exact 
           path={"/projects/pokedex-quiz"}
           component={PokedexQuiz}
+          ></Route>
+        <Route 
+          exact 
+          path={"/projects/colordle"}
+          component={ColordlePage}
           ></Route>
         <Route component={PageNotFound}></Route>
       </Switch>
