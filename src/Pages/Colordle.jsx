@@ -33,6 +33,12 @@ function set_seed(s) {
 function print(x){
     console.log(x);
 }
+function arrayEquals(a, b) {
+    return Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index]);
+}
 const mod = 16777216;
 class Colordle extends Component{
     constructor(props){
@@ -50,7 +56,7 @@ class Colordle extends Component{
             ct[i] = carr;
         }
         this.state = {
-            color: this.generateHexColor(this.getSeed(1)),
+            // color: this.generateHexColor(this.getSeed(1)),
             value_table: vt,
             color_table: ct,
             row: 0,
@@ -68,6 +74,7 @@ class Colordle extends Component{
                     
                     {/* <button onClick={()=> this.clearBoard()}>Clear</button> */}
                 </div>
+                <div className="feedback-box"></div>
                 <div className="guess-board">
                     {this.state.value_table.map((value,index) => (
                         <div className={'row-' + index} style={{display: "flex"}} key={index}>
@@ -84,8 +91,9 @@ class Colordle extends Component{
         );
     }
     componentDidMount(){
+        this.setState({color: this.generateHexColor(this.getSeed(1))});
         document.addEventListener('keydown', this.keyboardHandler.bind(this));
-        this.setState();
+        // this.setState();
     }
     getSeed(offset){
         let date = new Date();
@@ -208,7 +216,18 @@ class Colordle extends Component{
         let state = {color_table: this.state.color_table};
         state.color_table[this.state.row] = feedback;
         state.row = this.state.row + 1;
-        if(state.row >= NUM_GUESSES) state.row = NUM_GUESSES;
+        if(state.row >= NUM_GUESSES){
+            state.row = NUM_GUESSES;
+            let message = ""
+            if(arrayEquals(feedback, Array(COLOR_LENGTH).fill(FEEDBACK.green))){
+                message += "Correct! The color was: " + this.state.color;
+            }
+            else{
+                message += "Incorrect! The color was: " + this.state.color;
+            }
+            let box = document.getElementsByClassName("feedback-box")[0]
+            if(box) box.innerHTML = message;
+        }
         state.index = 0;
         this.setState(state);
     }
@@ -225,6 +244,8 @@ class Colordle extends Component{
             vt[i] = varr;
             ct[i] = carr;
         }
+        let box = document.getElementsByClassName("feedback-box")[0];
+        if(box) box.innerHTML = '';
         this.setState({color_table:ct, value_table:vt, row:0, index:0});
     }
     getContrastColor(color){
