@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.992dc02e.css",
-    "main.js": "/static/js/main.7e70a384.js",
+    "main.css": "/static/css/main.215b6b25.css",
+    "main.js": "/static/js/main.fd44f642.js",
     "static/media/sorting-visualizer.gif": "/static/media/sorting-visualizer.9a342c15100b25e5df9a.gif",
+    "static/media/pokedex-quiz.png": "/static/media/pokedex-quiz.971ccabde2f86904f33c.png",
     "static/media/headshot1.jpg": "/static/media/headshot1.f78829fc92fbd923e64a.jpg",
+    "static/media/colordle.png": "/static/media/colordle.f4ba69d0ca4dae9205b9.png",
     "static/media/moon1.jpg": "/static/media/moon1.087c97e3953891006bf2.jpg",
+    "static/media/color_wheel.png": "/static/media/color_wheel.8ab838c1b59c9036d2dc.png",
     "index.html": "/index.html",
-    "main.992dc02e.css.map": "/static/css/main.992dc02e.css.map",
-    "main.7e70a384.js.map": "/static/js/main.7e70a384.js.map"
+    "main.215b6b25.css.map": "/static/css/main.215b6b25.css.map",
+    "main.fd44f642.js.map": "/static/js/main.fd44f642.js.map"
   },
   "entrypoints": [
-    "static/css/main.992dc02e.css",
-    "static/js/main.7e70a384.js"
+    "static/css/main.215b6b25.css",
+    "static/js/main.fd44f642.js"
   ]
 }
