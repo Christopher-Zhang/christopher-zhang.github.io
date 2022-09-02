@@ -209,7 +209,6 @@ class Colordle extends Component{
         this.setState({index: x-1});
     }
     submitGuess(){
-        let arr = this.state.value_table[this.state.row];
         let feedback = this.checkGuess(this.state.value_table[this.state.row]);
         if(!feedback) return;
         // update
