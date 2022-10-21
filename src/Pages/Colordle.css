@@ -13,7 +13,8 @@
 .colordle {
     justify-content: center;
 }
-.guess-board{
+
+.guess-board {
     justify-content: center;
     align-items: center;
     display: flex;
@@ -22,24 +23,30 @@
     padding-bottom: 10px;
     color: lightslategrey;
 }
-.color-display{
-    /* max-width: 50px; */
+
+.color-display {
     margin-bottom: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
-button{
+
+button {
     margin-left: 5px;
 }
 
-.Color-wheel{
+.button-section {
+    display: 'flex';
+    justify-content: 'center';
+}
+
+.Color-wheel {
     height: calc(10px + 4vmin);
     width: calc(10px + 4vmin);
     pointer-events: none;
     border: 2rem;
     margin-top: 0.5rem;
     margin-left: 0.25rem;
-  }
+}
 
 @media (prefers-reduced-motion: no-preference) {
     .Color-wheel {
@@ -51,12 +58,18 @@ button{
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
 }
 
-.feedback-box{
+.feedback-box {
     text-align: center;
 }
 
+.help-text {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    flex-wrap: wrap;
+}
