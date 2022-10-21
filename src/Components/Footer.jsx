@@ -2,7 +2,6 @@ import React from 'react';
 import './Footer.css';
 
 export default function Footer(props){
-    const backgroundColor = props.backgroundColor;
     return(
         <footer className="bg-dark">
             <div className="container-fluid">

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SortingVisualizer from '../SortingVisualizer/SortingVisualizer';
-import SafeNavBar from '../Components/SafeNavbar';
 import '../SortingVisualizer/SortingVisualizer.css';
 
 class SortingVisualizerPage extends Component {

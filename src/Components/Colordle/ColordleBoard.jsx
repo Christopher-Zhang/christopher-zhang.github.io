@@ -105,7 +105,7 @@ class ColordleBoard extends Component {
     }
 
     /**
-     * 
+     * Shuffles around the color string in a deterministic way
      * @param {String} hex 
      * @returns String: new hex color string
      */

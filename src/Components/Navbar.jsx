@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Link, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './Navbar.css';
 import 'bootstrap/dist/js/bootstrap.js';
 class Navbar extends Component {
     state = {};
     render() { 
         return (  
-            // <div className="container-fluid bg-dark">
                 <nav role="navigation" className="navbar navbar-expand-lg bg-dark navbar-dark py-3 px-sm-4 px-lg-5 sticky-top"> 
                     <h1><Link className="navbar-brand ps-sm-5 ps-4" to="/">Christopher Zhang</Link></h1>
                     <button className="navbar-toggler me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,17 +28,11 @@ class Navbar extends Component {
                                     <Link className="dropdown-item" to="/projects/sorting-visualizer">Sorting Algorithm Visualizer</Link>
                                     <Link className="dropdown-item" to="/projects/pokedex-quiz">Pokedex Quiz</Link>
                                     <Link className="dropdown-item" to="/projects/colordle">Colordle</Link>
-                                    {/* <Link className="dropdown-item">Project 3</Link> */}
                                 </div>
                             </li>
-                            {/* <li className="nav-item">
-                                <a className="nav-link text-white" href="../files/Resume Website Ver.pdf" target="_blank">Résumé</a>
-                            </li> */}
-
                         </ul>                    
                     </div>
                 </nav>
-            // </div>
         );
     }
 }

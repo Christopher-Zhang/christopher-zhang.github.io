@@ -83,7 +83,7 @@ class QuizDisplay extends Component{
         let length = entries.length;
         let entry = null;
         // get flavor text
-        while(entry == null || entry.language.name != 'en'){
+        while(entry == null || entry.language.name !== 'en'){
             let index = Math.floor(Math.random() * length);
             entry = entries[index];
         }
@@ -92,7 +92,7 @@ class QuizDisplay extends Component{
         return this.redactName(text);
     }
     redactName(text){
-        if(text == false) return text;
+        if(text === false) return text;
         let redacted = "_____";
         let name = this.state.name;
         console.log(name);
@@ -173,10 +173,10 @@ class QuizDisplay extends Component{
         let hintbox = document.getElementById('hintbox');
         hintbox.innerHTML = '';
         document.getElementById('letters').innerHTML = '';
-        this.state.name_index = 0;
+        this.setState({name_index: 0});
     }
     showNextLetter(){
-        if (this.state.name_index == this.state.name_length){
+        if (this.state.name_index === this.state.name_length){
             return;
         }
         this.setState({shame_counter: this.state.shame_counter-1});

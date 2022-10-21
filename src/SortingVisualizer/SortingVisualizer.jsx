@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './SortingVisualizer.css';
 import SortingMenu from './SortingMenu';
-import { Route, Link, Switch } from "react-router-dom";
 
 const NORMAL_COLOR = 'pink';
 const SELECT_COLOR = 'red';
@@ -72,11 +71,8 @@ class SortingVisualizer extends Component {
         this.setState({delay:delay});
     }
     stopModule(){
-        let length = this.state.array.length;
-        console.log('reset parent');
+        // console.log('reset parent');
         this.setState({abort:true});
-        // setTimeout(this.newArray(length), this.state.delay * 3, length);
-        // this.newArray(length);
         setTimeout(
             ()=>{this.setState({abort:false})},
             this.state.delay * 2
@@ -173,7 +169,6 @@ class SortingVisualizer extends Component {
         
         let array = this.getArrayCopy();
         let dummyArray = array.slice();
-        let realArray = array.slice();
         if(array.length <= 1) return array;
         await this.mergeSortRecursive(array,0,array.length-1,dummyArray);
         console.log(array);

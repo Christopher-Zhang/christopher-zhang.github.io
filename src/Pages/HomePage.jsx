@@ -35,7 +35,7 @@ class HomePage extends Component {
                     captionText={
                         <div>
                             <b>Take a look at my most recent project: </b>
-                            A Pokedex Quiz that uses <a href="https://pokeapi.co/" target='_blank'>https://pokeapi.co/</a><br></br>
+                            A Pokedex Quiz that uses <a href="https://pokeapi.co/" target='_blank' rel="noreferrer">https://pokeapi.co/</a><br></br>
                         </div>
                     }
                     buttonText={"Take me there!"}

@@ -52,14 +52,14 @@ class Typewriter extends Component {
         let currentLength = currentText.length;
         let delta = this.state.baseDelta - Math.random() * 100;
         if(isDeleting){
-            if(currentLength == 0){
+            if(currentLength === 0){
                 done = true;
                 this.setState({done:true});
             } else{
                 currentText = target.substring(0,currentLength-1);
             }
         } else {
-            if(currentLength == targetLength){
+            if(currentLength === targetLength){
                 // this.setState({isDeleting:true});
                 done = true;
                 delta = this.state.waitPeriod;
@@ -109,17 +109,13 @@ class Typewriter extends Component {
     }
     render() { 
         const cursorColor = this.state.textColor;
-        const backgroundColor = this.state.bgColor;
         const {currentInstance} = this.state;
-        // const placeholder = "placeholder-" + currentInstance;
         const cursorID = "cursor-" + currentInstance;
-        const {currentText} = this.state;
-        // const borderStyle = "0.05em solid " + backgroundColor; 
+        const {currentText} = this.state; 
         const textElement = (
             <h1 className="content display-1" style={{color: this.state.textColor}}>
                 {currentText}
                 <span id={cursorID} className="visible" style={{borderRight:"0.05em solid" + cursorColor}}></span>
-                {/* <span id={placeholder} className="invisible">{currentText}</span> */}
             </h1>
         )
         return (

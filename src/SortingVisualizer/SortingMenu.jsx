@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './SortingMenu.css';
 
-const SPEEDS = [100,75,50,25,10];
 class SortingMenu extends Component {
     constructor(props){
         super(props);

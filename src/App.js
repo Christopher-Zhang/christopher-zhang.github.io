@@ -6,7 +6,7 @@ import HomePage from './Pages/HomePage';
 import PageNotFound from './Pages/PageNotFound';
 import PokedexQuiz from './Pages/PokedexQuiz';
 import ColordlePage from './Pages/Colordle';
-import { Link, Route, Switch, HashRouter} from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
 
 const About = () =>(
   <div className="p-5">
